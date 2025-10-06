@@ -1,15 +1,33 @@
+<!-- 
+  Author: Saikiran Reddy Gokula
+  Project: Server Dice roller with Node.js
+  Credits: This file was created using a combination of ChatGPT (OpenAI) 
+           assistance and class-provided templates. Additional modifications 
+           and customizations were made by me
+  AI Usage: ChatGPT was used to suggest structure. I adapted and merged those with available templates.
+-->
 <!DOCTYPE html>
 <html>
 <head>
-<title>Node on Azure</title>
+  <title>Dice API Test</title>
 </head>
 <body>
-<h1>Node.js and Express Hosted on Microsoft Azure Template</h1>
-<p>This repository serves as a template that can be used to create a Node.js and Express based website that can easily
-be hosted on Microsoft Azure.</p>
+  <h2>Test Dice API</h2>
+  <button onclick="testRoll()">Roll Dice</button>
+  <p id="result"></p>
 
-Additional application functionality includes:<br />
-<a href="fetching-from-server.html">Accessing Node.js Server-Side Application Programming Interfaces (APIs)</a><br />
-<a href="fetching-remote-dog-breeds.html">Accessing Remote Application Programming Interfaces (APIs)</a>
+  <script>
+    async function testRoll() {
+      try {
+        const response = await fetch("/api/dice/roll");
+        const data = await response.json();
+        document.getElementById("result").innerText =
+          `Die 1: ${data.die1}, Die 2: ${data.die2}, Total: ${data.total}`;
+      } catch (err) {
+        alert("Error: " + err.message);
+      }
+    }
+  </script>
 </body>
 </html>
+
